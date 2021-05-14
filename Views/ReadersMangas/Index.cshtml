@@ -1,0 +1,58 @@
+﻿@model IEnumerable<LabManga.ReadersManga>
+
+@{
+    ViewData["Title"] = "Манги читателя";
+}
+
+<h1>Манги читаталя @ViewBag.ReaderName </h1>
+
+<p>
+    @Html.ActionLink("Добавить новую мангу", "Create", new { readerId = ViewBag.ReaderId })
+</p>
+
+<p>
+    @Html.ActionLink("Назад", "Return")
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PlanReturn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FactReturn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Manga)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlanReturn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FactReturn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Manga.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Ифнормация</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
